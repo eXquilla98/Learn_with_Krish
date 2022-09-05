@@ -1,13 +1,22 @@
 package equals;
 
 public class Employee {
-String id,name,address,nic;
+String id,name,address,nic,code;
 
-    public Employee(String id, String name, String address, String nic) {
+    public Employee() {
         this.id = id;
         this.name = name;
         this.address = address;
         this.nic = nic;
+        this.code= code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getId() {
