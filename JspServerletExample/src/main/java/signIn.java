@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import controller.DB;
 import model.User;
@@ -30,7 +31,11 @@ public class signIn extends HttpServlet {
 		}if (exist== true) {
 			User user= db.getUser(email);
 		  if (email.equals(user.getEmail())&& password.equals(user.getPassword())){
+			  HttpSession session =req.getSession();
+			  
 			  req.setAttribute("uname", user.getUsername());
+			  
+			  session.setAttribute("user", user);
 			  req.getRequestDispatcher("/Home.jsp").forward(req, resp);
 			  
 			
