@@ -2,11 +2,16 @@ package com.threadsExample1;
 
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		Printer printer = new Printer();
-		printer.start();
-		System.out.println("This is from main thread");
+		Thread thread=new Thread(printer);
+		//thread.setPriority(1);
+		thread.start();
+		//thread.join();
+		for (int i = 0; i < 100; i++) {
+			System.out.println("This is from main thread"+i);
+		}
 		
 
 	}
