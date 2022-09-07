@@ -1,0 +1,40 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from BdayServiceImpService WSDL service -->
+
+  <service name="BdayServiceImp" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://DefaultNamespace"/>
+      <parameter name="wsdlServiceElement" value="BdayServiceImpService"/>
+      <parameter name="schemaQualified" value="http://DefaultNamespace"/>
+      <parameter name="wsdlServicePort" value="BdayServiceImp"/>
+      <parameter name="className" value="DefaultNamespace.BdayServiceImpSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="BdayServiceImp"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addBirthday" qname="operNS:addBirthday" xmlns:operNS="http://DefaultNamespace" returnQName="retNS:addBirthdayReturn" xmlns:retNS="http://DefaultNamespace" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:B" xmlns:pns="http://DefaultNamespace" type="tns:Birthday" xmlns:tns="http://DefaultNamespace"/>
+      </operation>
+      <operation name="getBirthday" qname="operNS:getBirthday" xmlns:operNS="http://DefaultNamespace" returnQName="retNS:getBirthdayReturn" xmlns:retNS="http://DefaultNamespace" returnType="rtns:Birthday" xmlns:rtns="http://DefaultNamespace" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://DefaultNamespace" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="getBirthday addBirthday"/>
+
+      <typeMapping
+        xmlns:ns="http://DefaultNamespace"
+        qname="ns:Birthday"
+        type="java:DefaultNamespace.Birthday"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

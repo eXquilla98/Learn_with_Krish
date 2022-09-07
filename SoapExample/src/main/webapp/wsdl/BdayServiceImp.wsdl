@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DefaultNamespace" xmlns:intf="http://DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://DefaultNamespace" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="addBirthday">
+    <complexType>
+     <sequence>
+      <element name="B" type="impl:Birthday"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Birthday">
+    <sequence>
+     <element name="date" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="month" nillable="true" type="xsd:string"/>
+     <element name="year" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="addBirthdayResponse">
+    <complexType>
+     <sequence>
+      <element name="addBirthdayReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBirthday">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBirthdayResponse">
+    <complexType>
+     <sequence>
+      <element name="getBirthdayReturn" type="impl:Birthday"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getBirthdayRequest">
+
+      <wsdl:part element="impl:getBirthday" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBirthdayResponse">
+
+      <wsdl:part element="impl:addBirthdayResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getBirthdayResponse">
+
+      <wsdl:part element="impl:getBirthdayResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addBirthdayRequest">
+
+      <wsdl:part element="impl:addBirthday" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="BdayServiceImp">
+
+      <wsdl:operation name="addBirthday">
+
+         <wsdl:input message="impl:addBirthdayRequest" name="addBirthdayRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addBirthdayResponse" name="addBirthdayResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBirthday">
+
+         <wsdl:input message="impl:getBirthdayRequest" name="getBirthdayRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getBirthdayResponse" name="getBirthdayResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="BdayServiceImpSoapBinding" type="impl:BdayServiceImp">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addBirthday">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addBirthdayRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addBirthdayResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getBirthday">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getBirthdayRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getBirthdayResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="BdayServiceImpService">
+
+      <wsdl:port binding="impl:BdayServiceImpSoapBinding" name="BdayServiceImp">
+
+         <wsdlsoap:address location="http://localhost:8950/SoapExample/services/BdayServiceImp"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
