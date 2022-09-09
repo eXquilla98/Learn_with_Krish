@@ -2,35 +2,22 @@ package com.exquilla.kafkaExample;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Properties;
-
+@Service
 class sampleConsumer {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Properties props= new Properties();
-	       props.put("bootstrap.servers", "localhost:9092");
-	       props.put("group.id","test-group");
-	       
-	       props.put("enable.auto.commit","true");
-	       
-	       props.put("key.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
-	       props.put("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer");
-	       
-	       KafkaConsumer<String,String>consumer = new KafkaConsumer<String,String>(props);
-	       
-	       consumer.subscribe(Arrays.asList("source-topic"));
-	       
-	       
-	       while (true)) {
-	    	ConsumerRecords<String,String>records=consumer.poll(100);
-	    	
-	    	for (ConsumerRecord<String, String>record:records) {
-	    		System.out.printf("offset=%d, key=%s,value= %s\n", record.offset(),record.key(),record.value();
-				
+	
+		
+			
+			public static final Logger LOGGER = LoggerFactory.getLogger(sampleConsumer.class);
+			
+			@KafkaListener(topics = "demo", groupId ="myGroup")
+			public void consume(String message) {
+				LOGGER.info(String.format("Message received -> %s ", message));
 			}
 	    	
 	    	   
@@ -40,6 +27,6 @@ class sampleConsumer {
 	       
 	       
 
-	}
+	
 
-}
+
