@@ -1,4 +1,4 @@
-package com.exquilla.kafkaExample;
+package com.exquilla.kafkaExample.kafka;
 
 
 import org.springframework.boot.SpringApplication;
